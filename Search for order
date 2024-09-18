@@ -1,0 +1,20 @@
+javascript:(function() {
+    var statusToSearch = prompt("Enter the status you want to search for:");
+    
+    // Find all 'a' tags (hyperlinks) and the corresponding statuses
+    var links = document.querySelectorAll('a');
+    var openedLinks = 0;
+
+    links.forEach(function(link) {
+        var orderText = link.textContent;
+        var nextSibling = link.nextElementSibling;
+
+        // Look for the status in the sibling element
+        if (nextSibling && nextSibling.textContent.includes(statusToSearch)) {
+            window.open(link.href, '_blank');
+            openedLinks++;
+        }
+    });
+
+    alert("Opened " + openedLinks + " links with status: " + statusToSearch);
+})();
